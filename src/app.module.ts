@@ -1,5 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserController } from './users/user.controller';
+import { User } from './users/user.entity';
+import { UserService } from './users/user.service';
 
 @Module({
   imports: [
@@ -12,9 +15,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
       synchronize: true,
       database: 'nest-api'
-    })
+    }),
+    TypeOrmModule.forFeature([User])
   ],
-  controllers: [],
-  providers: [],
+  controllers: [UserController],
+  providers: [UserService],
 })
 export class AppModule { }
